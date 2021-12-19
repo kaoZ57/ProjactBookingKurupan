@@ -5,21 +5,28 @@
         console.log("respone:", $respone);
     </script>
 
-    <p>{{ $respone }}</p>
+    {{-- <p>{{ $respone }}</p> --}}
+
     <table class="table table-bordered">
         <thead>
             <tr>
                 <th scope="col">id</th>
-                <th scope="col">bookingID</th>
-                <th scope="col">fname</th>
+                <th scope="col">name</th>
+                <th scope="col">item_type_id</th>
+                <th scope="col">description</th>
+                <th scope="col">is_active</th>
             </tr>
         </thead>
         <tbody>
-            {{-- @foreach ($respone as $data)
+            @foreach ($respone->item as $data)
                 <tr>
-                    <th scope="row">{{ $data['name'] }}</th>
+                    <th scope="row">{{ $data->id }}</th>
+                    <td>{{ $data->name }}</td>
+                    <td>{{ $data->item_type_id }}</td>
+                    <td>{{ $data->description }}</td>
+                    <td>{{ $data->is_active }}</td>
                 </tr>
-            @endforeach --}}
+            @endforeach
         </tbody>
 
     </table>
