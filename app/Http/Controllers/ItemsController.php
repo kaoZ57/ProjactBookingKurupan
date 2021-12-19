@@ -19,9 +19,9 @@ class ItemsController extends Controller
         return $respone->object();
     }
 
-    // function getItemsID()
-    // {
-    //     $respone = Http::get(config('app.api_host') . '/api/getItems/1');
-    //     return $respone->object();
-    // }
+    function getItemsID()
+    {
+        $respone = Http::get(config('app.api_host') . '/api/getItems/1');
+        return $respone->object();
+    }
 }
