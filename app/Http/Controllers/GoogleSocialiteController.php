@@ -36,7 +36,7 @@ class GoogleSocialiteController extends Controller
 
                 Auth::login($finduser);
 
-                return redirect('/home');
+                return redirect('/dashboard');
             } else {
                 $newUser = User::create([
                     'name' => $user->name,
@@ -48,10 +48,11 @@ class GoogleSocialiteController extends Controller
 
                 Auth::login($newUser);
 
-                return redirect('/home');
+                return redirect('/dashboard');
             }
         } catch (Exception $e) {
-            dd($e->getMessage());
+            //dd($e->getMessage());
+            return redirect('/dashboard');
         }
     }
 }
