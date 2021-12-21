@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemsController;
-use App\Http\Controllers\Auth\GoogleSocialiteController;
+use App\Http\Controllers\GoogleSocialiteController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,5 +28,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::get('/auth/google', [GoogleSocialiteController::class, 'redirectToGoogle']);
-Route::get('/callback/google', [GoogleSocialiteController::class, 'handleCallback']);
+// Google URL
+Route::get('auth/google', [GoogleSocialiteController::class, 'redirectToGoogle']);
+Route::get('callback/google', [GoogleSocialiteController::class, 'handleCallback']);
