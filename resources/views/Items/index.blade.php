@@ -1,11 +1,17 @@
-@extends('layouts.app')
-@section('content') <h1>Items</h1>
+@endsection
+<x-guest-layout>
+<x-jet-authentication-card>
+    <x-slot name="logo">
+        <x-jet-authentication-card-logo />
+    </x-slot>
 
-    <script>
-        console.log("respone:", $respone);
-    </script>
+    <x-jet-validation-errors class="mb-4" />
 
-    {{-- <p>{{ $respone }}</p> --}}
+    @if (session('status'))
+        <div class="mb-4 font-medium text-sm text-green-600">
+            {{ session('status') }}
+        </div>
+    @endif
 
     <table class="table table-bordered">
         <thead>
@@ -15,6 +21,7 @@
                 <th scope="col">item_type_id</th>
                 <th scope="col">description</th>
                 <th scope="col">is_active</th>
+                <th scope="col">ดู</th>
             </tr>
         </thead>
         <tbody>
@@ -25,11 +32,12 @@
                     <td>{{ $data->item_type_id }}</td>
                     <td>{{ $data->description }}</td>
                     <td>{{ $data->is_active }}</td>
+                    <td><a href="{{ url('items/' . $data->id) }}" class="btn btn-primary">ดู</a>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
 
     </table>
-
-
-@endsection
+</x-jet-authentication-card>
+</x-guest-layout>

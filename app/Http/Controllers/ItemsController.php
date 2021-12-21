@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Request;
+use SebastianBergmann\Environment\Console;
 
 class ItemsController extends Controller
 {
@@ -17,6 +18,12 @@ class ItemsController extends Controller
     {
         $respone = Http::get(config('app.api_host') . '/api/getItems');
         return $respone->object();
+    }
+
+    function showitemsID($id)
+    {
+        $respone = Http::get(config('app.api_host') . '/api/getItems/', $id);
+        return view('Items.id',  ['respone' => $respone->object()]);
     }
 
     // function getItemsID($id)

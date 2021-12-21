@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemsController;
+use App\Http\Controllers\Auth\GoogleSocialiteController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,3 +19,14 @@ Route::get('/', function () {
 });
 
 Route::get('/items', [ItemsController::class, 'index'])->name('items');
+
+Route::get('/items/{id}', [ItemsController::class, 'showitemsID']);
+
+Route::post('/searchitems', [ItemsController::class, 'searchitems'])->name('searchitems');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
+
+Route::get('/auth/google', [GoogleSocialiteController::class, 'redirectToGoogle']);
+Route::get('/callback/google', [GoogleSocialiteController::class, 'handleCallback']);
