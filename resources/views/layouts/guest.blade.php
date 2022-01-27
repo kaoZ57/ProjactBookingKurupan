@@ -8,6 +8,10 @@
 
     <title>{{ config('เว็บไซต์จองคุรุพันธ์', 'เว็บไซต์จองคุรุพันธ์') }}</title>
 
+    <!-- Icon -->
+    <link rel="icon" href="{{ url('css/favicon.ico') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url('css/style.css') }}">
+
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 

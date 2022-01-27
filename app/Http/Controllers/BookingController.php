@@ -8,13 +8,14 @@ use Illuminate\Http\Request;
 class BookingController extends Controller
 {
 
-    function index()
+    public function index()
     {
         $booking = Http::get(config('app.api_host') . '/api/getBooking');
         $item = Http::get(config('app.api_host') . '/api/getItems');
         return view('booking.index', ['booking' => $booking->object(), 'item' => $item->object()]);
     }
 
+    //POST
     public function post(Request $request)
     {
         $response = Http::post(config('postBooking') . '/api/postBooking', [
@@ -23,12 +24,11 @@ class BookingController extends Controller
             'start_date' => $request['start_date'],
             'end_date' => $request['end_date'],
         ]);
-        dd($response);
 
         if ($response->status() != 200) {
-            return redirect()->route('bookingitems')->with('failed', trans('booking.set.failed'));
+            return redirect()->route('/')->with('failed', trans('booking.set.failed'));
         }
 
-        return redirect()->route('bookingitems')->with('success', trans('booking.set.success'));
+        return redirect()->route('/')->with('success', trans('booking.set.success'));
     }
 }

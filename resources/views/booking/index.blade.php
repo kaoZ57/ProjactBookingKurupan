@@ -15,13 +15,14 @@
     <div class="column is-offset-one-fifth">
         <div class="box">
             <span class="tag is-info is-large">ชื่อผู้ใช้ปัจจุบัน {{ Auth::user()->name }} </span>
+
             <form action="{{ route('addBookingitems') }}" method="POST">
                 <br>
                 <input class="input" type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                 <div class="field">
                     <label class="label">อุปกรณ์ :</label>
                     <div class="select">
-                        <select>
+                        <select name="booking_item_id">
                             @foreach ($item->item as $data)
                                 <option value="{{ $data->id }}">{{ $data->name }}</option>
                             @endforeach
@@ -40,10 +41,9 @@
                 </div>
                 <br>
                 <button type="submit" class="button is-success"
-                    onclick="return confirm('ยืนยันที่จะเพิ่ม?')">เพิ่ม</button>
-        </div>
-        </form>
-    </div>
-    </div>
+                    onclick="return confirm('ยืนยันที่จะจอง?')">เพิ่ม</button>
+            </form>
 
+        </div>
+    </div>
 </x-app-layout>
