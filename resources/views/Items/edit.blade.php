@@ -11,14 +11,17 @@
             {{ __('แก้ไข') }}
         </h2>
     </x-slot>
-
-    <div class="column is-offset-one-fifth">
+    {{ $response }}
+    {{-- @foreach ($response->item as $data)
+        <p class="">{{ $data }}</p>
+    @endforeach --}}
+    {{-- <div class="column is-offset-one-fifth">
         <div class="box">
             <div class="modal-body text-center">
                 <form action="{{ route('editItems') }}" method="POST">
                     @csrf
                     <label for="name">ชื่อ: </label><br>
-                    {{-- <input type="text" name="name" value="{{ $response->name }}"><br> --}}
+                    <input type="text" name="name" value="{{ $response->name }}"><br>
                     <label for="name">ประเภท: </label><br>
                     <input type="number" name="item_type_id"><br>
                     <label for="name">คำอธิบาย: </label><br>
@@ -31,6 +34,6 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div> --}}
 
 </x-app-layout>

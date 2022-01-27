@@ -20,6 +20,7 @@ class ItemsController extends Controller
         return view('Items.add');
     }
 
+    // POST
     public function post(Request $request)
     {
         $response = Http::post(config('app.api_host') . '/api/postItems', [
@@ -36,15 +37,16 @@ class ItemsController extends Controller
         return redirect()->route('items')->with('success', trans('items.set.success'));
     }
 
+    // EDIT
     public function edit($id)
     {
-        //dd($id);
         $response = Http::get(config('app.api_host') . '/api/getItems/' . $id);
-        // dd($response->item);
-        return view('Items.edit', compact('response'));
+        // return view('Items.edit', ['response' => $response->object()]);
+        return view('Items.edit')->with(compact('response'));
     }
 
-    public function update(Request $request)
+    // UPDATE
+    public function update(Request $request, $id)
     {
         $response = Http::post(config('app.api_host') . '/api/getItems' . $id, [
             'name' => $request['name'],
@@ -59,9 +61,9 @@ class ItemsController extends Controller
         return redirect()->route('items')->with('success', trans('items.set.success'));
     }
 
+    // DELETE
     public function delete($id)
     {
-        // dd($id);
         $response = Http::delete(config('app.api_host') . '/api/deleteItems/' . $id);
         if ($response->status() != 200) {
             return redirect()->route('items')->with('failed', trans('items.set.failed'));

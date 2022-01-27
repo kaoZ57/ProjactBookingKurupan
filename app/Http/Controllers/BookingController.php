@@ -23,11 +23,12 @@ class BookingController extends Controller
             'start_date' => $request['start_date'],
             'end_date' => $request['end_date'],
         ]);
+        dd($response);
 
         if ($response->status() != 200) {
-            return redirect()->route('booking.index')->with('failed', trans('booking.set.failed'));
+            return redirect()->route('bookingitems')->with('failed', trans('booking.set.failed'));
         }
 
-        return redirect()->route('booking.index')->with('success', trans('booking.set.success'));
+        return redirect()->route('bookingitems')->with('success', trans('booking.set.success'));
     }
 }

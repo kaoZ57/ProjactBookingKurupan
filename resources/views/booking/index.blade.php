@@ -14,8 +14,11 @@
 
     <div class="column is-offset-one-fifth">
         <div class="box">
-            <div class="column">
-                <div class="modal-body">
+            <span class="tag is-info is-large">ชื่อผู้ใช้ปัจจุบัน {{ Auth::user()->name }} </span>
+            <form action="{{ route('addBookingitems') }}" method="POST">
+                <br>
+                <input class="input" type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                <div class="field">
                     <label class="label">อุปกรณ์ :</label>
                     <div class="select">
                         <select>
@@ -25,25 +28,22 @@
                         </select>
                     </div>
                 </div>
-            </div>
-            <br>
-            <div class="column">
-                <div class="columns">
+                <br>
+                <div class="field">
                     <label class="label">เริ่ม :</label>
                     <input type="datetime-local" name="start_date">
                 </div>
                 <br>
-                <div class="columns">
+                <div class="field">
                     <label class="label">จบ :</label>
                     <input type="datetime-local" name="end_date">
                 </div>
                 <br>
-                <br>
                 <button type="submit" class="button is-success"
                     onclick="return confirm('ยืนยันที่จะเพิ่ม?')">เพิ่ม</button>
-            </div>
-
         </div>
+        </form>
+    </div>
     </div>
 
 </x-app-layout>
