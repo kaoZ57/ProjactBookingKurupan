@@ -1,8 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\dashboard;
 use App\Http\Controllers\ItemsController;
 use App\Http\Controllers\GoogleSocialiteController;
+use App\Http\Controllers\BookingController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,20 +16,27 @@ use App\Http\Controllers\GoogleSocialiteController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::middleware('auth:sanctum')->group(function () {
+
+    // Dashboard
+    Route::get('/', [dashboard::class, 'index'])->name('dashboard');
+
+    // Google URL
+    Route::get('auth/google', [GoogleSocialiteController::class, 'redirectToGoogle']);
+    Route::get('callback/google', [GoogleSocialiteController::class, 'handleCallback']);
+
+    // Items
+    Route::get('items', [ItemsController::class, 'index'])->name('items');
+    Route::get('items/add', [ItemsController::class, 'addPage'])->name('addItemsPage');
+    Route::post('items/add', [ItemsController::class, 'post'])->name('addItems');
+    Route::get('items/edit/{id}', [ItemsController::class, 'edit'])->name('editItems');
+    Route::get('items/deleteitems/{id}', [ItemsController::class, 'delete'])->name('deleteItems');
+
+    // Booking
+    Route::get('bookingitems', [BookingController::class, 'index'])->name('bookingitems');
+    Route::post('bookingitems/add', [BookingController::class, 'post'])->name('addBookingitems');
 });
-
-Route::get('/items', [ItemsController::class, 'index'])->name('items');
-
-Route::get('/items/{id}', [ItemsController::class, 'showitemsID']);
-
-Route::post('/searchitems', [ItemsController::class, 'searchitems'])->name('searchitems');
-
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
-
-// Google URL
-Route::get('auth/google', [GoogleSocialiteController::class, 'redirectToGoogle']);
-Route::get('callback/google', [GoogleSocialiteController::class, 'handleCallback']);

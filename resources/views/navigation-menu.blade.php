@@ -13,10 +13,16 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                        {{ __('หน้าหลัก') }}
                     </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('items') }}">
-                        {{ __('Items') }}
+                    <x-jet-nav-link href="{{ route('items') }}" :active="request()->routeIs('items')">
+                        {{ __('รายชื่ออุปกรณ์') }}
+                    </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('addItemsPage') }}" :active="request()->routeIs('addItemsPage')">
+                        {{ __('เพิ่มอุปกรณ์') }}
+                    </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('bookingitems') }}" :active="request()->routeIs('bookingitems')">
+                        {{ __('จอง') }}
                     </x-jet-nav-link>
                 </div>
             </div>
