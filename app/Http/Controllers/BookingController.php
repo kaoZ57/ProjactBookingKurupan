@@ -26,9 +26,9 @@ class BookingController extends Controller
         ]);
 
         if ($response->status() != 200) {
-            return redirect()->route('/')->with('failed', trans('booking.set.failed'));
+            return redirect()->route('dashboard')->with('failed', trans('booking.set.failed'));
         }
 
-        return redirect()->route('/')->with('success', trans('booking.set.success'));
+        return redirect()->route('dashboard')->with('success', trans('booking.set.success'));
     }
 }

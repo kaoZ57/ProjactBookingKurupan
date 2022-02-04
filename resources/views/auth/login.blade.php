@@ -36,6 +36,12 @@
                 </label>
             </div>
 
+            <div class="mt-4">
+                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ url('register') }}">
+                    {{ __('register?') }}
+                </a>
+            </div>
+
             <div class="flex items-center justify-end mt-4">
                 @if (Route::has('password.request'))
                     <a class="underline text-sm text-gray-600 hover:text-gray-900"
@@ -51,7 +57,7 @@
                 <a href="{{ url('auth/google') }}"
                     style="margin-top: 0px !important;background: green;color: #ffffff;padding: 5px;border-radius:7px;"
                     class="ml-2">
-                    <strong>Google Login</strong>
+                    <strong>Google</strong>
                 </a>
 
             </div>

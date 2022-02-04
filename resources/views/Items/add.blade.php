@@ -21,10 +21,19 @@
                             <input class="input" type="text" name="name">
                         </div>
                     </div>
+                    @error('name')
+                        <span class="is-red">{{ $massage }}</span>
+                    @enderror
                     <div class="field">
                         <label class="label">ประเภท : </label>
                         <div class="control">
                             <input class="input" type="number" name="item_type_id">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">จำนวน : </label>
+                        <div class="control">
+                            <input class="input" type="number" name="quantity">
                         </div>
                     </div>
                     <div class="field">

@@ -21,6 +21,7 @@
                         <th>ลำดับ</th>
                         <th>ชื่อ</th>
                         <th>ประเภท</th>
+                        <th>จำนวน</th>
                         <th>คำอธิบาย</th>
                         <th>สถานะ</th>
                         <th>แก้ไข</th>
@@ -34,7 +35,9 @@
                             <td scope="row">{{ $i++ }}</td>
                             <td>{{ $data->name }}</td>
                             <td>{{ $data->item_type_id }}</td>
+                            <td>{{ $data->quantity }}</td>
                             <td>{{ $data->description }}</td>
+                            {{-- <td>{{ str::limit($data->description, 20) }}</td> --}}
                             @if ($data->is_active == 1)
                                 <td>
                                     <span class="tag is-success">เปิด</span>

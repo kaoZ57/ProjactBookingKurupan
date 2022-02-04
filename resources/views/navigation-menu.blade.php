@@ -17,13 +17,18 @@
                         {{ __('หน้าหลัก') }}
                     </x-jet-nav-link>
 
-                    <x-jet-nav-link href="{{ route('items') }}" :active="request()->routeIs('items')">
-                        {{ __('รายชื่ออุปกรณ์') }}
-                    </x-jet-nav-link>
+                    @if (Auth::user()->is_admin == 1 || Auth::user()->is_staff == 1)
+                        <x-jet-nav-link href="{{ route('items') }}" :active="request()->routeIs('items')">
+                            {{ __('รายชื่ออุปกรณ์') }}
+                        </x-jet-nav-link>
+                    @else
+                    @endif
+
 
                     <x-jet-nav-link href="{{ route('bookingitems') }}" :active="request()->routeIs('bookingitems')">
                         {{ __('จอง') }}
                     </x-jet-nav-link>
+
 
 
 

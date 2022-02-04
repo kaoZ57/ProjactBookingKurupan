@@ -17,6 +17,11 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css"
+        integrity="sha256-16PDMvytZTH9heHu9KBPjzrFTaoner60bnABykjNiM0=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.css"
+        integrity="sha256-zsz1FbyNCtIE2gIB+IyWV7GbCLyKJDTBRz0qQaBSLxM=" crossorigin="anonymous">
+    <link href='fullcalendar/main.css' rel='stylesheet' />
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma-rtl.min.css">
@@ -28,6 +33,27 @@
 
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js"
+        integrity="sha256-XOMgUu4lWKSn8CFoJoBoGd9Q/OET+xrfGYSo+AKpFhE=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.js"
+        integrity="sha256-nCXGH8kkPFozCBx4meHWhA5OCqXhhBzoBVpHfM/HmwM=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/locales-all.min.js"
+        integrity="sha256-GcByKJnun2NoPMzoBsuCb4O2MKiqJZLlHTw3PJeqSkI=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/locales-all.js"
+        integrity="sha256-Mu1bnaszjpLPWI+/bY7jB6JMtHj5nn9zIAsXMuaNxdk=" crossorigin="anonymous"></script>
+    <script src='fullcalendar/main.js'></script>
+    <script src='fullcalendar/core/main.js'></script>
+    <script src='fullcalendar/core/locales-all.js'></script>
+
+    <style>
+        #foo {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+        }
+
+    </style>
+
 </head>
 
 <body class="font-sans antialiased">
@@ -45,16 +71,39 @@
                 </div>
             </header>
         @endif
+        <script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
+        <script>
+            kofiWidgetOverlay.draw('kaophongam', {
+                'type': 'floating-chat',
+                'floating-chat.donateButton.text': 'Support Me',
+                'floating-chat.donateButton.background-color': '#ff5f5f',
+                'floating-chat.donateButton.text-color': '#fff'
+            });
+        </script>
 
         <!-- Page Content -->
         <main>
             {{ $slot }}
+            <div id="foo"><a
+                    href="https://wakatime.com/badge/user/2e4c9efc-2112-4cb7-b704-df292575fa01/project/2a356437-0e6e-4f58-91ff-c4c8ebbb1648"><img
+                        src="https://wakatime.com/badge/user/2e4c9efc-2112-4cb7-b704-df292575fa01/project/2a356437-0e6e-4f58-91ff-c4c8ebbb1648.svg"
+                        alt="wakatime"></a></div>
         </main>
     </div>
 
     @stack('modals')
 
     @livewireScripts
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth'
+            });
+            calendar.render();
+        });
+    </script>
 
     <script>
         // Initialize all input of type date
@@ -80,6 +129,11 @@
         var calendars = new bulmaCalendar('.bulmaCalendar', {
             dateFormat: 'dd.MM.yyyy' // 01.01.2021
         });
+
+        var calendar = new Calenar(calendarEl, {
+            locale: 'th'
+        });
+        calendar.setOption('locale', 'th');
     </script>
 </body>
 

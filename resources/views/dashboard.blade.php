@@ -43,7 +43,9 @@
         <div class="box">
             <div class="columns">
                 <div class="column">
-                    <div class="box">ปฏิทิน</div>
+                    <div class="box">
+                        <div id='calendar'></div>
+                    </div>
                 </div>
                 <div class="column">
                     <div class="box">
@@ -53,14 +55,15 @@
                                     <th>ลำดับ</th>
                                     <th>ชื่อ</th>
                                     <th>ประเภท</th>
+                                    <th>จำนวน</th>
                                     <th>คำอธิบาย</th>
                                     <th>สถานะ</th>
                                     <th>จอง</th>
-                                    @if (Auth::user()->is_admin == 1 || Auth::user()->is_staff == 1)
+                                    {{-- @if (Auth::user()->is_admin == 1 || Auth::user()->is_staff == 1)
                                         <th>แก้ไข</th>
                                         <th>ลบ</th>
                                     @else
-                                    @endif
+                                    @endif --}}
                                 </tr>
                             </thead>
                             <tbody>
@@ -70,20 +73,26 @@
                                         <td scope="row">{{ $i++ }}</td>
                                         <td>{{ $data->name }}</td>
                                         <td>{{ $data->item_type_id }}</td>
+                                        <td>{{ $data->quantity }}</td>
                                         <td>{{ $data->description }}</td>
                                         @if ($data->is_active == 1)
                                             <td>
                                                 <span class="tag is-success">เปิด</span>
                                             </td>
+                                            <td>
+                                                <a class="button is-primary" href="{{ url('' . $data->id) }}">จอง</a>
+                                            </td>
                                         @else
                                             <td>
                                                 <span class="tag is-danger">ปิด</span>
                                             </td>
+                                            <td>
+                                                <a class="button is-static" title="Disabled button" disabled
+                                                    href="{{ url('' . $data->id) }}">จอง</a>
+                                            </td>
                                         @endif
-                                        <td>
-                                            <a class="button is-primary" href="{{ url('' . $data->id) }}">จอง</a>
-                                        </td>
-                                        @if (Auth::user()->is_admin == 1 || Auth::user()->is_staff == 1)
+
+                                        {{-- @if (Auth::user()->is_admin == 1 || Auth::user()->is_staff == 1)
                                             <td><a class="button is-warning"
                                                     href="{{ url('items/edit/' . $data->id) }}">แก้</a>
                                             </td>
@@ -94,7 +103,7 @@
                                             </td>
                                         @else
                                         @endif
-                                    </tr>
+                                    </tr> --}}
                                 @endforeach
                             </tbody>
                         </table>

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-
+use Illuminate\Support\Str;
 
 class ItemsController extends Controller
 {
@@ -28,6 +28,7 @@ class ItemsController extends Controller
             'item_type_id' => $request['item_type_id'],
             'description' => $request['description'],
             'is_active' => $request['is_active'],
+            'quantity' => $request['quantity'],
         ]);
 
         if ($response->status() != 200) {
@@ -53,6 +54,7 @@ class ItemsController extends Controller
             'item_type_id' => $request['item_type_id'],
             'description' => $request['description'],
             'is_active' => $request['is_active'],
+            'quantity' => $request['quantity'],
         ]);
         if ($response->status() != 200) {
             return redirect()->route('items')->with('failed', trans('items.set.failed'));
